@@ -32,7 +32,7 @@ The data model for the lakehouse follows dimensional modeling principles with st
     - rate
     - zone
 
-[Data Model Diagram](./data_models.png)
+![Data Model Diagram](./data_models.png)
 
 ## Data Mart
 
