@@ -15,8 +15,8 @@ The data pipeline consists of the following steps:
 1. Download the data from the S3 bucket to Databricks Volumes in the bronze layer.
 2. Load the data/files into a Spark DataFrame and save it as a Delta table in the silver layer.
 3. Clean the data from the silver layer.
-    3.1. Update column names and data types.
-    3.2. Remove unnecessary columns.
+   3.1. Update column names and data types.
+   3.2. Remove unnecessary columns.
 4. Save facts about trips in a Delta table in the gold layer.
 5. Save Payment, Rate, and Zone dimensions in Delta tables in the gold layer.
 6. Aggregate data about trip payments and save it in a Delta table in the data mart.
@@ -25,20 +25,17 @@ The data pipeline consists of the following steps:
 
 The data model for the lakehouse follows dimensional modeling principles with star schemas. The data model consists of the following tables:
 
-- Facts:
-    - trips
-- Dimensions:
-    - payment
-    - rate
-    - zone
+| Table Name            | Table Type      | Description                                     |
+| --------------------- | --------------- | ----------------------------------------------- |
+| fct_yellow_taxi_trips | Fact Table      | Contains facts about trip made by yellow taxis. |
+| dim_payments          | Dimension Table | Contains information about payment types.       |
+| dim_rates             | Dimension Table | Contains information about rate codes.          |
+| dim_zones             | Dimension Table | Contains information about taxi zones.          |
+| trip_payment          | Data Mart Table | Contains aggregated data about trip payments.   |
+
+The data model diagram is shown below:
 
 ![Data Model Diagram](./data_models.png)
-
-## Data Mart
-
-The data mart consists of the following tables:
-
-- trips_payment (aggregated data about trip payments)
 
 ## Conclusions
 
@@ -51,4 +48,3 @@ The next steps for this project are:
 - Add a machine learning model to predict trip fares.
 - Provision mlops to monitor the data pipeline and the machine learning model.
 - Create a dashboard to visualize the data.
-
